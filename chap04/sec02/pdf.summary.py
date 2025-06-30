@@ -7,7 +7,7 @@ load_dotenv()
 api_key = os.getenv('API_KEY')
 
 def pdf_to_text(pdf_file_path: str):
-    pdf_file_path = "sec01/data/대심도 지하철역사의 대피시간 재획정에 관한 연구.pdf"
+    pdf_file_path = "data/대심도 지하철역사의 대피시간 재획정에 관한 연구.pdf"
     doc = pymupdf.open(pdf_file_path)
 
     header_height = 80
@@ -36,7 +36,6 @@ def pdf_to_text(pdf_file_path: str):
     return txt_file_path
 
 def summarize_txt(file_path: str):
-
     client = OpenAI(api_key=api_key)
 
     with open(file_path, 'r' , encoding='utf-8') as f:
@@ -80,5 +79,5 @@ def summarize_pdf(pdf_file_path: str, output_file_path: str):
         f.write(summary)
 
 if __name__ == '__main__':
-    pdf_file_path = "sec01/data/대심도 지하철역사의 대피시간 재획정에 관한 연구.pdf"
-    summarize_pdf(pdf_file_path='chap04/output/crop_model_summary2.txt')
+    pdf_file_path = "data/대심도 지하철역사의 대피시간 재획정에 관한 연구.pdf"
+    summarize_pdf(pdf_file_path, 'output/crop_model_summary2.txt')
